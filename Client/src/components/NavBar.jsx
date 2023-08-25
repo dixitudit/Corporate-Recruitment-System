@@ -36,12 +36,11 @@ const NavBar = () => {
                 </svg>
 
             </div>}
-
         </div>
         <div>
             <ul className={`md:flex gap-3 font-medium pr-36 max-md:bg-teal-100 z-[-1] md:z-auto md:static absolute w-full px-4 md:w-auto md:py-1 md-pl-0 pl-8 md:opacity-100 opacity-0 transition-all ease-in duration-200 ${open?'top-16 opacity-100':'top-[-480px]'}`}>
                 <li className='hover:text-[#00D8FF] mx-2 my-4 '>
-                    <a className="hover:underline hover:underline-offset-4 ">Home</a>
+                    <a className="hover:underline hover:underline-offset-4 cursor-pointer">Home</a>
                 </li>
                 <li className='hover:text-[#00D8FF] mx-2 my-4 '>
                     <a href='#' className="hover:underline hover:underline-offset-4 ">Jobs</a>
