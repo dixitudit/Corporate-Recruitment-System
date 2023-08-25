@@ -1,4 +1,5 @@
 import { useState  } from "react"
+import { Link } from "react-router-dom"
 
 const NavBar = () => {
     const [open, setOpen] = useState(false);
@@ -40,7 +41,7 @@ const NavBar = () => {
         <div>
             <ul className={`md:flex gap-3 font-medium pr-36 max-md:bg-teal-100 z-[-1] md:z-auto md:static absolute w-full px-4 md:w-auto md:py-1 md-pl-0 pl-8 md:opacity-100 opacity-0 transition-all ease-in duration-200 ${open?'top-16 opacity-100':'top-[-480px]'}`}>
                 <li className='hover:text-[#00D8FF] mx-2 my-4 '>
-                    <a href='#' className="hover:underline hover:underline-offset-4 ">Home</a>
+                    <a className="hover:underline hover:underline-offset-4 ">Home</a>
                 </li>
                 <li className='hover:text-[#00D8FF] mx-2 my-4 '>
                     <a href='#' className="hover:underline hover:underline-offset-4 ">Jobs</a>
@@ -55,9 +56,9 @@ const NavBar = () => {
                     <a href='#' className="hover:underline hover:underline-offset-4 ">Contact Us</a>
                 </li>
                 <li>
-                    <button className='absolute z-[1] top-1 right-20'>
+                    <Link to={'/login'} className='absolute z-[1] top-1 right-20'>
                         <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Log in</div>
-                    </button>
+                    </Link>
                     <button className=" absolute top-1 right-0">
                         <div className='py-1 hover:bg-[#77e5f1] rounded-2xl px-5  my-4 bg-sky-100'>Sign Up</div>
                     </button>

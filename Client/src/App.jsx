@@ -1,11 +1,14 @@
 import './App.css'
-import NavBar from './components/NavBar'
+import IndexPage from './Pages/IndexPage'
+import Login from './Pages/Login'
+import {Route, Routes} from 'react-router-dom'
 
 function App() {
   return (
-    <div>
-      <NavBar />
-    </div>
+    <Routes>
+      <Route index element={<IndexPage/>} />
+      <Route path="/login" element={<Login/>} />
+    </Routes>
   )
 }
 
