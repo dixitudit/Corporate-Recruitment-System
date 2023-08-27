@@ -1,5 +1,6 @@
 import { useState  } from "react"
 import { Link, useLocation } from "react-router-dom"
+import { Link as ScrollLink } from "react-scroll";
 
 const NavBar = () => {
     const [open, setOpen] = useState(false);
@@ -51,7 +52,7 @@ const NavBar = () => {
                     <a href='#' className={`cursor-pointer ${location.pathname === '/Practice' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Practice</a>
                 </li>
                 <li className='mx-2 my-4 '>
-                    <a href='#' className={`cursor-pointer ${location.pathname === '/Contactus' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Contact Us</a>
+                    <ScrollLink to="ContactUs" className={`cursor-pointer ${location.pathname === '/Contactus' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Contact Us</ScrollLink>
                 </li>
                 <li>
                     <Link to={'/login'} className='absolute z-[1] top-1 right-20'>
