@@ -1,15 +1,14 @@
 import { useState  } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const NavBar = () => {
     const [open, setOpen] = useState(false);
+    const location  = useLocation();
     const changeSVG = () =>{
         setOpen(!open);      
     }
 
   return (
-
-<body>
     <nav className='p-1 whitespace-nowrap md:flex font-serif md:justify-between md:items-center shadow-md'>
         <div className='flex justify-between items-center'>
             {/* logo */}
@@ -39,20 +38,20 @@ const NavBar = () => {
         </div>
         <div>
             <ul className={`md:flex gap-3 font-medium pr-36 max-md:bg-teal-100 z-[-1] md:z-auto md:static absolute w-full px-4 md:w-auto md:py-1 md-pl-0 pl-8 md:opacity-100 opacity-0 transition-all ease-in duration-200 ${open?'top-16 opacity-100':'top-[-480px]'}`}>
-                <li className='hover:text-[#00D8FF] mx-2 my-4 '>
-                    <a className="hover:underline hover:underline-offset-4 cursor-pointer">Home</a>
+                <li className='mx-2 my-4 '>
+                    <Link to={"/"} className={`cursor-pointer ${location.pathname === '/' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Home</Link>
                 </li>
-                <li className='hover:text-[#00D8FF] mx-2 my-4 '>
-                    <a href='#' className="hover:underline hover:underline-offset-4 ">Jobs</a>
+                <li className='mx-2 my-4 '>
+                    <Link to={'/Jobs'} className={`cursor-pointer ${location.pathname === '/Jobs' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Jobs</Link>
                 </li>
-                <li className='hover:text-[#00D8FF] mx-2 my-4 '>
-                    <a href='#' className="hover:underline hover:underline-offset-4 ">Companies</a>
+                <li className='mx-2 my-4 '>
+                    <a href='#' className={`cursor-pointer ${location.pathname === '/Companies' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Companies</a>
                 </li>
-                <li className='hover:text-[#00D8FF] mx-2 my-4 '>
-                    <a href='#' className="hover:underline hover:underline-offset-4 ">Practice</a>
+                <li className='mx-2 my-4 '>
+                    <a href='#' className={`cursor-pointer ${location.pathname === '/Practice' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Practice</a>
                 </li>
-                <li className='hover:text-[#00D8FF] mx-2 my-4 '>
-                    <a href='#' className="hover:underline hover:underline-offset-4 ">Contact Us</a>
+                <li className='mx-2 my-4 '>
+                    <a href='#' className={`cursor-pointer ${location.pathname === '/Contactus' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Contact Us</a>
                 </li>
                 <li>
                     <Link to={'/login'} className='absolute z-[1] top-1 right-20'>
@@ -66,8 +65,6 @@ const NavBar = () => {
 
         </div>
     </nav>
-</body>
-
   )
 }
 
