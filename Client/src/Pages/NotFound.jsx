@@ -12,7 +12,7 @@ export default function NotFound(){
                 </svg>
             </p>
             <h1 className="mt-3 text-2xl font-semibold text-black md:text-3xl">Page not found</h1>
-            <p className="mt-4 text-gray-500 ">The page you are looking for doesn&apos;t exist. Here are some helpful links:</p>
+            <p className="mt-4 text-gray-500 ">The page you are looking for doesn&apos;t exist.</p>
 
             <div className="flex items-center px-1/2 mt-6 gap-x-3 shrink-0 sm:w-auto">
                 <Link to={"/"} className="px-5 py-2 text-md trackingWide textWhite transition-colors duration-200 bg-[#00D8FF] rounded-lg shrink-0 whitespace-nowrap w-auto hover:bg-blue-600">
