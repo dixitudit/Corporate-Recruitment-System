@@ -13,6 +13,7 @@
     "@carbon/icons-react": "^11.25.0",
     "autoprefixer": "^10.4.15",
     "icons": "^1.0.0",
+    "axios": "^1.5.0",
     "postcss": "^8.4.28",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
