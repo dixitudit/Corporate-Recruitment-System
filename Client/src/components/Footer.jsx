@@ -5,7 +5,7 @@ export default function Footer(){
         <footer id="ContactUs" className="bg-sky-200 text-blue-950 pr-[50px] pl-[50px]">
             
             <div className="md:items-start max-md:text-center md:justify-between md:flex sm:px-12 px-4 py-4 ">
-                <div className="p-2">
+                <div className="p-2 mb-2">
                     <span className="font-bold font-serif">Contact Us</span>
                     <ul>
                         <li className=" py-1">
@@ -49,7 +49,7 @@ export default function Footer(){
                         </li>
                     </ul>
                 </div>
-                <div className="p-2">
+                <div className="p-2 mb-2">
                     <span className="font-bold font-serif">For You</span>
                     <ul >
                         <li className="px-2">
@@ -134,12 +134,11 @@ export default function Footer(){
                                 </p>
                             </Link>
                         </li>
-                        
                     </ul>
                 </div>
             </div>
             <hr />
-            <div className="p-1 text-center">
+            <div className="p-1 flex text-center justify-center">
                 <span>© 2023 Copyright:</span>
                 <p className="font-semibold">Skill Magnet</p>
             </div>
