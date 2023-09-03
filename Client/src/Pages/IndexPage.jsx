@@ -25,7 +25,7 @@ export default function IndexPage() {
           
           <Typed
             className='md:text-5xl sm:text-4xl text-xl font-bold md:pl-3 pl-1'
-            strings={['To Hire', ' To Productive', 'To Aquire Knowledge']}
+            strings={['To Hire', ' To Productive', 'To Up Skill']}
             typeSpeed={120}
             backSpeed={140}
             loop
