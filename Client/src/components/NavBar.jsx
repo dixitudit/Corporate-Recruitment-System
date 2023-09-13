@@ -1,9 +1,14 @@
-import { useState  } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { useState  } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import PopUp from "./PopUp";
 
 const NavBar = () => {
     const [open, setOpen] = useState(false);
+    const [openPopup, setOpenPopup] = useState(false);
+
+    const HandleRemovePopUp = () => setOpenPopup(false);
+  
     const location  = useLocation();
     const changeSVG = () =>{
         setOpen(!open);      
@@ -58,13 +63,15 @@ const NavBar = () => {
                     <Link to={'/login'} className='absolute z-[1] top-1 right-20'>
                         <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Log in</div>
                     </Link>
-                    <button className=" absolute top-1 right-0">
+                    <button onClick={() => setOpenPopup(true)} className=" absolute top-1 right-0">
                         <div className='py-1 hover:bg-[#77e5f1] rounded-2xl px-5  my-4 bg-sky-100'>Sign Up</div>
                     </button>
                 </li>
             </ul>
 
         </div>
+        
+        <PopUp openPopUp={openPopup} closePopUp={HandleRemovePopUp} />
     </nav>
   )
 }
