@@ -187,8 +187,8 @@ export default function Footer(){
             </div>
             <hr />
             <div className="p-1 flex text-center justify-center">
-                <span>© 2023 Copyright:</span>
-                <p className="font-semibold">Skill Magnet</p>
+                <span className="underline">© 2023 Copyright:</span>
+                <p className="font-semibold underline">Skill Magnet</p>
             </div>
         </footer>
     </>);
