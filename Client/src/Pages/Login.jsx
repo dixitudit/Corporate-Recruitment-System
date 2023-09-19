@@ -1,14 +1,38 @@
+<<<<<<< HEAD
 
 import React from 'react'
 import { useState } from 'react';
 import PopUp from '../components/PopUp';
+=======
+import PopUp from '../components/PopUp';
+import { useState  } from "react";
+import axios from "axios";
+>>>>>>> fca830bf3352b5cd08829e431a2abc7876caabd4
 
 
  const Login = () => {
   const [openPopup, setOpenPopup] = useState(false);
-
   const HandleRemovePopUp = () => setOpenPopup(false);
-
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [table, setTable] = useState('');  
+  const [wrongCredentials, setWrongCredentials] = useState(false); 
+  
+  function loginUser(ev){
+    ev.preventDefault();
+    axios.post('/login-auth',{
+      email,
+      password,
+      table,
+    }).then((res)=>{
+      console.log(res.data.message);
+      if(res.data.message === "Wrong"){
+        setWrongCredentials(true);
+      }else{
+        setWrongCredentials(false);
+      }
+    });
+  }
 
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -20,47 +44,44 @@ import PopUp from '../components/PopUp';
     </g>
     </svg>
     </div>
-    <h2 class=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+    <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+    {wrongCredentials && <h4 className='text-center text-red-600'>Wrong Email/Password/Role !</h4>}
   </div>
 
   <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form className="space-y-6" action="#" method="POST">
+    <form className="space-y-6" onSubmit={loginUser}>
       <div>
-        <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
         <div className="mt-2">
-          <input id="email" name="email" type="email" autocomplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+          <input id="email" onChange={ev => setEmail(ev.target.value)} value={email} name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none p-1 focus:ring-sky-400 sm:text-sm sm:leading-6"/>
         </div>
       </div>
 
       <div>
-        <div className="flex items-center justify-between">
-          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-          <div className="text-sm">
-            <a href="#" class="font-semibold text-sky-400 hover:text-sky-400">Forgot password?</a>
-          </div>
-        </div>
+          <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
+
         <div className="mt-2">
-          <input id="password" name="password" type="password" autocomplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
+          <input id="password" name="password" type="password" onChange={ev => setPassword(ev.target.value)} value={password} autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-none p-1 focus:ring-sky-400 sm:text-sm sm:leading-6"/>
         </div>
       </div>
 
         <div>
-        <label for="User Role" className="block text-sm font-medium leading-6 text-gray-900">Please Select User Role</label>
-        <div class="mt-2">
+        <label htmlFor="UserRole" className="block text-sm font-medium leading-6 text-gray-900">Please Select User Role</label>
+        <div className="mt-2">
           
-          <select name="User Role"  id="User Role" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-200 sm:text-sm sm:leading-6">
+          <select name="UserRole" onChange={ev => setTable(ev.target.value)} value={table} id="UserRole" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6">
             <option value="">Select</option>
-            <option value="Recruiter">Login As Recruiter</option>
-            <option value="Candidate">Login As Candidate</option>
+            <option value="company">Login As Recruiter</option>
+            <option value="candidate">Login As Candidate</option>
           </select>
         </div> 
         </div>
         <div>
-        <button type="submit" class="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+        <button type="submit" className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
       </div>
-      <div class="mt-0">
+      <div className="mt-0">
       <p className="text-center">
-       Don't have an account?  
+       Don&apos;t have an account?  
            
         <a href="#" onClick={() => setOpenPopup(true)} className="font-semibold text-sky-400 hover:text-sky-400 alert"> Register Here</a>
            
