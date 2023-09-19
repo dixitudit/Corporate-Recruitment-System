@@ -1,7 +1,7 @@
 
 import React from 'react'
+import { useState } from 'react';
 import PopUp from '../components/PopUp';
-import { useState  } from "react"
 
 
  const Login = () => {
@@ -53,7 +53,7 @@ import { useState  } from "react"
             <option value="Recruiter">Login As Recruiter</option>
             <option value="Candidate">Login As Candidate</option>
           </select>
-        </div>
+        </div> 
         </div>
         <div>
         <button type="submit" class="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>

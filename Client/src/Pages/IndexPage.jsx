@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+
 import Typed from "react-typed";
 import laptop from "../assets/laptop.jpg"
 export default function IndexPage() {

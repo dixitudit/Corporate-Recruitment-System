@@ -2,7 +2,7 @@ import { useState  } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import PopUp from "./PopUp";
-
+import Login from "../Pages/Login";
 const NavBar = () => {
     const [open, setOpen] = useState(false);
     const [openPopup, setOpenPopup] = useState(false);
@@ -69,7 +69,7 @@ const NavBar = () => {
                 </li>
             </ul>
 
-        </div>
+        </div> 
         
         <PopUp openPopUp={openPopup} closePopUp={HandleRemovePopUp} />
     </nav>

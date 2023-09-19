@@ -23,7 +23,7 @@ const PopUp = ({ openPopUp, closePopUp }) => {
           className='w-full p-3 justify-center items-center'>
           <h2
             className='font-semibold py-3 text-center text-xl'>
-                <Link to={'/register-candidate'} className=' '>
+                <Link to={'/register-as-candidate'} className=''>
                         <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Register as Candidate</div>
                 </Link>
                 <Link to={'/register-recruiter'} className=' '>

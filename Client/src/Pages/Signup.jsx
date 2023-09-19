@@ -1,5 +1,5 @@
 import React from 'react'
- 
+
 
  const Signup = () => {
   return (
@@ -12,11 +12,12 @@ import React from 'react'
     </g>
     </svg>
     </div>
-    <h2 class=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+    <h2 class=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Signup to your account</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <form class="space-y-6" action="#" method="POST">
+    
       <div>
         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
         <div class="mt-2">
@@ -56,10 +57,13 @@ import React from 'react'
 
     
   </div>
+  <Link to={'/rac'} className='absolute z-[1] top-1 right-20'>
+                        <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Register As Candidate</div>
+                    </Link>
 </div>
   )
 }
 
 
 
-export default Login;
+export default Signup;
