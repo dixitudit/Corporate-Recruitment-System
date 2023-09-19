@@ -26,7 +26,7 @@ const PopUp = ({ openPopUp, closePopUp }) => {
                 <Link to={'/register-as-candidate'} className=''>
                         <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Register as Candidate</div>
                 </Link>
-                <Link to={'/register-recruiter'} className=' '>
+                <Link to={'/register-as-recruiter'} className=' '>
                     <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Register as Recruiter</div>
                 </Link>
           </h2>

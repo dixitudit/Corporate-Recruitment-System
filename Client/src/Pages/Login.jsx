@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-
 import React from 'react'
 import { useState } from 'react';
 import PopUp from '../components/PopUp';
-=======
-import PopUp from '../components/PopUp';
-import { useState  } from "react";
 import axios from "axios";
->>>>>>> fca830bf3352b5cd08829e431a2abc7876caabd4
 
 
  const Login = () => {

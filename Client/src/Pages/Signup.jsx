@@ -60,6 +60,10 @@ import React from 'react'
   <Link to={'/rac'} className='absolute z-[1] top-1 right-20'>
                         <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Register As Candidate</div>
                     </Link>
+
+ <Link to={'/rar'} className='absolute z-[1] top-1 right-20'>
+   <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Register As Recruiter</div>
+ </Link>
 </div>
   )
 }
