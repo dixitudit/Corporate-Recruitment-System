@@ -1,12 +1,8 @@
-import React from 'react';
-
-
-
  const Registerrecruiter = () => {
   return (
     
-  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+  <div className="flex min-h-full flex-col justify-center px-6 py-10 lg:px-5">
+    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
       <div className='justify-center flex'>
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="38.000000pt" height="39.000000pt" viewBox="0 0 349.000000 356.000000" preserveAspectRatio="xMidYMid meet" >
       <g transform="translate(0.000000,356.000000) scale(0.100000,-0.100000)" fill="#00D8FF" stroke="none">
@@ -14,115 +10,89 @@ import React from 'react';
       </g>
       </svg>
       </div>
-      <h2 class=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Signup to your account</h2>
+      <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Recruiter Sign Up</h2>
     </div>
   
 
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form class="space-y-6">
+    <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form className="space-y-6">
 
       <div>
-          <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-          <div class="mt-2" >
-            <input id="name" name="name" type="text" autocomplete="name" required class="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+          <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
+          <div className="mt-2" >
+            <input id="name" name="name" type="text" autoComplete="name" required className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-          <div class="mt-2">
-            <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <div className="mt-2">
+            <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
-          <div class="flex items-center justify-between">
-            <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Password</label>
             
           </div>
-          <div class="mt-2">
-            <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+          <div className="mt-2">
+            <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
-          <label for="PhoneNo" class="block text-sm font-medium leading-6 text-gray-900">Phone Number</label>
-          <div class="mt-2">
-            <input id="PhoneNo" name="PhoneNo" type="tel" autocomplete="PhoneNo" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+          <div className="flex items-center justify-between">
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Confirm Password</label>
+            
           </div>
-        </div>
-
-      <div>
-          <label forName="ename" className="block text-sm font-medium leading-6 text-gray-900">Event_Name</label>
-          <div class="mt-2" >
-            <input id="ename" name="ename" type="text" autocomplete="ename" required class="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+          <div className="mt-2">
+            <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
-          <label for="skills" class="block text-sm font-medium leading-6 text-gray-900">Required_Skills</label>
-          <div class="mt-2" >
-            <input id="skills" name="skill" type="text" autocomplete="skills" required class="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
-          </div>
-        </div>
-
-      
-
-        <div>
-          <label for="noofcandidates" class="block text-sm font-medium leading-6 text-gray-900">Number Of Candidates Required</label>
-          <div class="mt-2">
-            <input id="noofcandidates" name="noofcandidates" type="number" min="1" autocomplete="noofcandidates" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
-          </div>
+        <label htmlFor="logo" className="block text-sm font-medium leading-6 text-gray-900">Company Logo</label>
+        <input type="file" id="myFile" required name="logo"/>
         </div>
 
         <div>
-          <label for="location" class="block text-sm font-medium leading-6 text-gray-900">Location</label>
-          <div class="mt-2">
-            <input id="location" name="location" type="text" autocomplete="location" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+          <label htmlFor="About" className="block text-sm font-medium leading-6 text-gray-900">About</label>
+          <div className="mt-2">
+            <textarea id="About" name="About" autoComplete="About" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+          </div>
+        </div>        
+
+        <div>
+          <label htmlFor="PhoneNo" className="block text-sm font-medium leading-6 text-gray-900">Phone Number</label>
+          <div className="mt-2">
+            <input id="PhoneNo" name="PhoneNo" type="tel" autoComplete="PhoneNo" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
-          <label for="jobtitle" class="block text-sm font-medium leading-6 text-gray-900">Job Title</label>
-          <div class="mt-2">
-            <input id="jobtitle" name="jobtitle" type="text" autocomplete="jobtitle" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
-          </div>
+        <label htmlFor="Company_Type" className="block text-sm font-medium leading-6 text-gray-900">Company Type</label>
+        <div className="mt-2">
+          
+          <select name="Company_Type" id="Company_Type" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6">
+            <option value="">Select</option>
+            <option value="company">Product Based</option>
+            <option value="candidate">Service Based</option>
+          </select>
+        </div> 
         </div>
 
         <div>
-          <label for="salary" class="block text-sm font-medium leading-6 text-gray-900">Salary</label>
-          <div class="mt-2">
-            <input id="salary" name="salary" type="text" inputmode="decimal" autocomplete="PhoneNo" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
-          </div>
-        </div>
-
-        <div>
-          <label for="qualification" class="block text-sm font-medium leading-6 text-gray-900">Qualification</label>
-          <div class="mt-2">
-            <input id="qualification" name="qualification" type="text" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
-          </div>
-        </div>
-
-        <div>
-          <label for="lastdate" class="block text-sm font-medium leading-6 text-gray-900">Last Date To Apply</label>
-          <div class="mt-2">
-            <input id="lastdate" name="lastdate" type="date" placeholder="dd-mm-yyyy" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+          <label htmlFor="companyWebsite" className="block text-sm font-medium leading-6 text-gray-900">Company Website</label>
+          <div className="mt-2" >
+            <input id="companyWebsite" name="companyWebsite" type="text" autoComplete="companyWebsite" required className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
 
-        
-        
         <div>
-          <label for="experience" class="block text-sm font-medium leading-6 text-gray-900">Experience</label>
-          <div class="mt-2">
-            <input id="experience" name="experience" type="number" min="0" autocomplete="experience" required class="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
-          </div>
-        </div>
-
-        <div>
-        <div class="mt-2">
-          <button type="submit" class="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-200">Signup</button>
+        <div className="mt-2">
+          <button type="submit" className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-200">Signup</button>
         </div>
         </div>
 
