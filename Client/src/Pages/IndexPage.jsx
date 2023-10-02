@@ -1,7 +1,9 @@
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+
 import Typed from "react-typed";
-import laptop from "../assets/laptop.jpg"
+import laptop from "../assets/laptop.jpg";
+import { Link } from "react-router-dom";
 export default function IndexPage() {
     return (
   <>
@@ -28,7 +30,7 @@ export default function IndexPage() {
           loop
         />
         </div>
-        <button className='whitespace-nowrap bg-[black] px-5 md:w-auto w-auto rounded-md font-medium my-6 mx-auto py-3 text-white'>Are You Ready</button>
+        <Link to={'/login'} className='whitespace-nowrap bg-[black] px-5 md:w-auto w-auto rounded-md font-medium my-6 mx-auto py-3 text-white'>Are You Ready</Link>
       </div>
 
 
