@@ -1,5 +1,6 @@
+//import React from 'react'
+import { useState } from 'react';
 import PopUp from '../components/PopUp';
-import { useState  } from "react";
 import axios from "axios";
 
 
@@ -67,7 +68,7 @@ import axios from "axios";
             <option value="company">Login As Recruiter</option>
             <option value="candidate">Login As Candidate</option>
           </select>
-        </div>
+        </div> 
         </div>
         <div>
         <button type="submit" className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
