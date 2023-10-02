@@ -20,7 +20,7 @@ var con = mysql.createConnection({
     host: "localhost",
     port: "3006",
     user: "root",
-    password: "hellomysql",
+    password: "root",
     database: "crsdb"
 });
 
