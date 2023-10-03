@@ -10,8 +10,10 @@ import axios from "axios";
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [table, setTable] = useState('');  
-  const [wrongCredentials, setWrongCredentials] = useState(false); 
-  
+  const [wrongEmail, setWrongEmail] = useState(false); 
+  const [wrongPass, setWrongPass] = useState(false); 
+
+
   function loginUser(ev){
     ev.preventDefault();
     axios.post('/login-auth',{
@@ -20,10 +22,15 @@ import axios from "axios";
       table,
     }).then((res)=>{
       console.log(res.data.message);
-      if(res.data.message === "Wrong"){
-        setWrongCredentials(true);
+      if(res.data.message === "Wrong Email"){
+        setWrongEmail(true);
       }else{
-        setWrongCredentials(false);
+        setWrongEmail(false);
+      }
+      if(res.data.message === "Wrong Pass"){
+        setWrongPass(true);
+      }else{
+        setWrongPass(false);
       }
     });
   }
@@ -39,7 +46,8 @@ import axios from "axios";
     </svg>
     </div>
     <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
-    {wrongCredentials && <h4 className='text-center text-red-600'>Wrong Email/Password/Role !</h4>}
+    {wrongEmail && <h4 className='text-center text-red-600'>No existing account with this email! Sign Up.</h4>}
+    {wrongPass && <h4 className='text-center text-red-600'>Wrong Password!</h4>}
   </div>
 
   <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

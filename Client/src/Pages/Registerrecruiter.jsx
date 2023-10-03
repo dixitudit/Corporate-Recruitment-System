@@ -1,4 +1,55 @@
- const Registerrecruiter = () => {
+import { useEffect, useState } from "react";
+import axios from "axios";
+import FormData from "form-data";
+
+const Registerrecruiter = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');  
+  const [logo, setLogo] = useState(null); 
+  const [about, setAbout] = useState(''); 
+  const [mobNo, setMobNo] = useState();
+  const [type, setType] = useState('');
+  const [website, setWebsite] = useState('');
+  const [passCheck, setPassCheck] = useState(false);
+  const [passBool, setPassBool] = useState(false);
+
+  useEffect(()=>{
+    if(passBool){
+      if(password===confirm){
+        setPassCheck(false);
+      }
+      else{
+        setPassCheck(true);
+      }
+    }
+  }, [passBool, password, confirm]);
+
+  function signupRecruiter(ev){
+    ev.preventDefault();
+    let logoFile = new FormData();
+    //logoFile.append('file',logo,logo.name);
+    axios.post('/signup-recruiter',{
+      name,
+      email,
+      password,
+      logoFile,
+      about,
+      mobNo,
+      type,
+      website,
+    },{
+      // headers: {
+      //   'Content-Type': logoFile.type
+      // }
+    }).then((res)=>{
+      window.location.href = res.data.redirect;
+    }).catch((err)=>{
+      console.log(err);
+    });
+  }
+  
   return (
     
   <div className="flex min-h-full flex-col justify-center px-6 py-10 lg:px-5">
@@ -15,19 +66,19 @@
   
 
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={signupRecruiter}>
 
       <div>
           <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
           <div className="mt-2" >
-            <input id="name" name="name" type="text" autoComplete="name" required className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="name" name="name" type="text" autoComplete="name" onChange={ev => setName(ev.target.value)} value={name} required className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
           <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
           <div className="mt-2">
-            <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="email" name="email" type="email" autoComplete="email" onChange={ev => setEmail(ev.target.value)} value={email} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
@@ -37,36 +88,44 @@
             
           </div>
           <div className="mt-2">
-            <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="password" name="password" type="password" autoComplete="current-password" onChange={ev => {
+              setPassword(ev.target.value);
+            }} value={password} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
-
+        
         <div>
           <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Confirm Password</label>
+            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Confirm Password {passCheck && <h4 className='text-red-600'>Enter the same password again!</h4>}</label>
             
           </div>
           <div className="mt-2">
-            <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="password" name="password" type="password" autoComplete="current-password" onChange={(ev) =>{
+                ev.persist();
+                setConfirm(ev.target.value);
+                setPassBool(true);
+              }
+            
+            } value={confirm} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
         <label htmlFor="logo" className="block text-sm font-medium leading-6 text-gray-900">Company Logo</label>
-        <input type="file" id="myFile" required name="logo"/>
+        <input type="file" id="myFile" onChange={ev => setLogo(ev.target.files[0])} name="logo"/>
         </div>
 
         <div>
           <label htmlFor="About" className="block text-sm font-medium leading-6 text-gray-900">About</label>
           <div className="mt-2">
-            <textarea id="About" name="About" autoComplete="About" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <textarea id="About" name="About" autoComplete="About" required onChange={(ev) => setAbout(ev.target.value)} value={about}className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>        
 
         <div>
           <label htmlFor="PhoneNo" className="block text-sm font-medium leading-6 text-gray-900">Phone Number</label>
           <div className="mt-2">
-            <input id="PhoneNo" name="PhoneNo" type="tel" autoComplete="PhoneNo" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="PhoneNo" name="PhoneNo" type="tel" autoComplete="PhoneNo" required onChange={(ev) => setMobNo(ev.target.value)} value={mobNo} className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
@@ -74,7 +133,7 @@
         <label htmlFor="Company_Type" className="block text-sm font-medium leading-6 text-gray-900">Company Type</label>
         <div className="mt-2">
           
-          <select name="Company_Type" id="Company_Type" required className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6">
+          <select name="Company_Type" id="Company_Type" required onChange={ev => setType(ev.target.value)} value={type} className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6">
             <option value="">Select</option>
             <option value="company">Product Based</option>
             <option value="candidate">Service Based</option>
@@ -85,14 +144,14 @@
         <div>
           <label htmlFor="companyWebsite" className="block text-sm font-medium leading-6 text-gray-900">Company Website</label>
           <div className="mt-2" >
-            <input id="companyWebsite" name="companyWebsite" type="text" autoComplete="companyWebsite" required className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="companyWebsite" name="companyWebsite" type="text" autoComplete="companyWebsite" required onChange={ev => setWebsite(ev.target.value)} value={website} className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
 
         <div>
         <div className="mt-2">
-          <button type="submit" className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-200">Signup</button>
+          <button type="submit" className="flex w-full justify-center rounded-md bg-sky-400 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-200">Sign up</button>
         </div>
         </div>
 
