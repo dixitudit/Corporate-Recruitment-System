@@ -1,5 +1,10 @@
 
+
+
+
+
  const Registercandidate = () => {
+
   return (
     
   <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -45,7 +50,7 @@
             
           </div>
           <div className="mt-2">
-            <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input  id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
@@ -55,7 +60,8 @@
             
           </div>
           <div className="mt-2">
-            <input id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input   id="cnfrmpassword" name="cnfrmpassword" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"  />
+           
           </div>
         </div>
 
@@ -113,8 +119,7 @@
         </div>
 
       </form>
-
-      
+    
     </div>
   </div>  
   )

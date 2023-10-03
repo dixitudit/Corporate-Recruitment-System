@@ -13,15 +13,18 @@ const Registerrecruiter = () => {
   const [type, setType] = useState('');
   const [website, setWebsite] = useState('');
   const [passCheck, setPassCheck] = useState(false);
+  const [passBool, setPassBool] = useState(false);
 
   useEffect(()=>{
-    if(password===confirm){
-      setPassCheck(false);
+    if(passBool){
+      if(password===confirm){
+        setPassCheck(false);
+      }
+      else{
+        setPassCheck(true);
+      }
     }
-    else{
-      setPassCheck(true);
-    }
-  }, [password, confirm]);
+  }, [passBool, password, confirm]);
 
   function signupRecruiter(ev){
     ev.preventDefault();
@@ -87,7 +90,6 @@ const Registerrecruiter = () => {
           <div className="mt-2">
             <input id="password" name="password" type="password" autoComplete="current-password" onChange={ev => {
               setPassword(ev.target.value);
-              setPassCheck(false);
             }} value={password} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
@@ -101,6 +103,7 @@ const Registerrecruiter = () => {
             <input id="password" name="password" type="password" autoComplete="current-password" onChange={(ev) =>{
                 ev.persist();
                 setConfirm(ev.target.value);
+                setPassBool(true);
               }
             
             } value={confirm} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
