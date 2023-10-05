@@ -30,6 +30,7 @@ import axios from "axios";
       if(res.data.message === "Wrong Pass"){
         setWrongPass(true);
       }else{
+        console.log("user logged in");
         setWrongPass(false);
       }
     });

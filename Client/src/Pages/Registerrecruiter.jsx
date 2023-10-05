@@ -28,21 +28,19 @@ const Registerrecruiter = () => {
 
   function signupRecruiter(ev){
     ev.preventDefault();
-    let logoFile = new FormData();
-    //logoFile.append('file',logo,logo.name);
-    axios.post('/signup-recruiter',{
-      name,
-      email,
-      password,
-      logoFile,
-      about,
-      mobNo,
-      type,
-      website,
-    },{
-      // headers: {
-      //   'Content-Type': logoFile.type
-      // }
+    const formData = new FormData();
+    formData.append('name',name);
+    formData.append('email',email);
+    formData.append('password',password);
+    formData.append('logo',logo);
+    formData.append('about',about);
+    formData.append('mobNo',mobNo);
+    formData.append('type',type);
+    formData.append('website',website);
+
+
+    axios.post('/signup-recruiter', formData , {
+      headers: {'Content-Type': 'multipart/form-data'},
     }).then((res)=>{
       window.location.href = res.data.redirect;
     }).catch((err)=>{
@@ -96,11 +94,11 @@ const Registerrecruiter = () => {
         
         <div>
           <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Confirm Password {passCheck && <h4 className='text-red-600'>Enter the same password again!</h4>}</label>
+            <label htmlFor="confirm_password" className="block text-sm font-medium leading-6 text-gray-900">Confirm Password {passCheck && <h4 className='text-red-600'>Enter the same password again!</h4>}</label>
             
           </div>
           <div className="mt-2">
-            <input id="password" name="password" type="password" autoComplete="current-password" onChange={(ev) =>{
+            <input id="confirm_password" name="confirm_password" type="password" autoComplete="current-password" onChange={(ev) =>{
                 ev.persist();
                 setConfirm(ev.target.value);
                 setPassBool(true);

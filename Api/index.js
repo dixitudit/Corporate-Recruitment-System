@@ -2,7 +2,7 @@ const express = require('express');
 
 const app = express();
 
-var bodyParser = require('body-parser');
+const multer  = require('multer');
 
 var mysql = require('mysql');
 
@@ -11,6 +11,7 @@ const cors = require('cors');
 const bcrypt = require('bcryptjs');
 
 app.use(express.json());
+
 app.use(cors({
     credentials:true,
     origin: 'http://localhost:5173',
@@ -29,21 +30,21 @@ con.connect(function(err){
     console.log("connected");
 });
 
-// get put methods here
-// app.get('/test',function(req,res){
-//     // console.log('intest');
-//     // res.json('test ok');
-//     res.redirect('/login');
-// });
 
-app.post('/signup-recruiter', function(req,res){
-    const {name, email, password, logo, about, mobNo, type, website} = req.body;
-    const hash = bcrypt.hashSync(password, bcrypt.genSaltSync());
-    var q = 'insert into company values(NULL,?,?,?,NULL,?,?,?,?,NULL,NULL)';
+const store = multer.memoryStorage();
+const upload = multer({storage: store})
 
-    con.query(q, [email,hash,name,about,mobNo,type,website], function(err,result){
+app.post('/signup-recruiter', upload.single('logo'), function(req, res){
+
+    // console.log(req.body.name);
+    // console.log(req.files);
+    const imageBuffer = req.file.buffer;
+    const hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync());
+    var q = 'insert into company values(NULL,?,?,?,?,?,?,?,?,NULL,NULL)';
+
+    con.query(q, [req.body.email,hash,req.body.name,imageBuffer,req.body.about,req.body.mobNo,req.body.type,req.body.website], function(err,result){
         if(err) throw err;
-        
+        console.log('recruiter added');
         res.json({redirect:'/login'});
     });
 })
@@ -62,7 +63,6 @@ app.post('/login-auth',function(req,res){
         if(result.length>0) {
             const isRightPass=bcrypt.compareSync(password,result[0].Password);
             if(isRightPass==true){
-                console.log(result[0].Password);
                 res.send(result);
             }
             else
