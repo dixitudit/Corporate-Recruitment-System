@@ -36,8 +36,6 @@ const upload = multer({storage: store})
 
 app.post('/signup-recruiter', upload.single('logo'), function(req, res){
 
-    // console.log(req.body.name);
-    // console.log(req.files);
     const imageBuffer = req.file.buffer;
     const hash = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync());
     var q = 'insert into company values(NULL,?,?,?,?,?,?,?,?,NULL,NULL)';

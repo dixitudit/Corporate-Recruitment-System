@@ -1,9 +1,56 @@
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+const Registercandidate = () => {
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState(''); 
+  const [address, setAddress] = useState(''); 
+  const [qualification, setQualification] = useState('');
+  const [skills, setSkills] = useState('');
+  const [mobNo, setMobNo] = useState();
+  const [dob, setDob] = useState();
+  const [resume, setResume] = useState(null); 
+  const [experience, setExperience] = useState();
+  const [passCheck, setPassCheck] = useState(false);
+  const [passBool, setPassBool] = useState(false);
+
+  useEffect(()=>{
+    if(passBool){
+      if(password===confirm){
+        setPassCheck(false);
+      }
+      else{
+        setPassCheck(true);
+      }
+    }
+  }, [passBool, password, confirm]);
+
+  function signupCandidate(ev){
+    ev.preventDefault();
+    const formData = new FormData();
+    formData.append('name',name);
+    formData.append('email',email);
+    formData.append('password',password);
+    formData.append('address',address);
+    formData.append('qualification',qualification);
+    formData.append('skills',skills);
+    formData.append('mobNo',mobNo);
+    formData.append('dob',dob);
+    formData.append('resume',resume);
+    formData.append('experiance',experience);
 
 
-
-
-
- const Registercandidate = () => {
+    axios.post('/signup-candidate', formData , {
+      headers: {'Content-Type': 'multipart/form-data'},
+    }).then((res)=>{
+      window.location.href = res.data.redirect;
+    }).catch((err)=>{
+      console.log(err);
+    });
+  }
 
   return (
     
@@ -21,26 +68,19 @@
   
 
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={signupCandidate}>
 
         <div>
-          <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">First Name</label>
+          <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
           <div className="mt-2" >
-            <input id="name" name="name" type="text" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="name" name="name" type="text" autoComplete="email" onChange={ev => setName(ev.target.value)} value={name}  required className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
-          <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Last Name</label>
-          <div className="mt-2" >
-            <input id="name" name="name" type="text" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-grey-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
-          </div>
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+          <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email </label>
           <div className="mt-2">
-            <input id="email" name="email" type="email" autoComplete="email" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="email" name="email" type="email" autoComplete="email" onChange={ev => setEmail(ev.target.value)} value={email} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
@@ -50,17 +90,25 @@
             
           </div>
           <div className="mt-2">
-            <input  id="password" name="password" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input  id="password" name="password" type="password" onChange={ev => {
+              setPassword(ev.target.value);
+            }} value={password}  autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
           <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">Confirm Password</label>
+            <label htmlFor="confirm" className="block text-sm font-medium leading-6 text-gray-900">Confirm Password {passCheck && <h4 className='text-red-600'>Enter the same password again!</h4>}</label>
             
           </div>
           <div className="mt-2">
-            <input   id="cnfrmpassword" name="cnfrmpassword" type="password" autoComplete="current-password" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"  />
+            <input   id="confirm" name="confirm" type="password" autoComplete="current-password" onChange={(ev) =>{
+                ev.persist();
+                setConfirm(ev.target.value);
+                setPassBool(true);
+              }
+            
+            } value={confirm} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"  />
            
           </div>
         </div>
@@ -68,48 +116,52 @@
         <div>
           <label htmlFor="address" className="block text-sm font-medium leading-6 text-gray-900">Address</label>
           <div className="mt-2">
-            <input id="address" name="address" type="text" autoComplete="address" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="address" name="address" type="text" autoComplete="address" onChange={(ev) => setAddress(ev.target.value)} value={address} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
           <label htmlFor="Qualification" className="block text-sm font-medium leading-6 text-gray-900">Qualification</label>
           <div className="mt-2">
-            <input id="qualification" name="qualification" type="text" autoComplete="qualification" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="qualification" name="qualification" type="text" autoComplete="qualification" onChange={(ev) => setQualification(ev.target.value)} value={qualification} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
           <label htmlFor="skills" className="block text-sm font-medium leading-6 text-gray-900">Skills</label>
           <div className="mt-2">
-            <input id="skills" name="skills" type="text" autoComplete="skills" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="skills" name="skills" type="text" autoComplete="skills" onChange={(ev) => setSkills(ev.target.value)} value={skills} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
           <label htmlFor="PhoneNo" className="block text-sm font-medium leading-6 text-gray-900">Phone Number</label>
           <div className="mt-2">
-            <input id="PhoneNo" name="PhoneNo" type="tel" autoComplete="PhoneNo" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="PhoneNo" name="PhoneNo" type="tel" autoComplete="PhoneNo" onChange={(ev) => setMobNo(ev.target.value)} value={mobNo} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
 
         <div>
           <label htmlFor="dateofbirth" className="block text-sm font-medium leading-6 text-gray-900">Date Of Birth</label>
           <div className="mt-2">
-            <input id="dateofbirth" name="dateofbirth" type="date" placeholder="dd-mm-yyyy" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="dateofbirth" name="dateofbirth" type="date" placeholder="dd-mm-yyyy" onChange={(ev) => setDob(ev.target.value)} value={dob} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
         
         <div>
         <label htmlFor="resume" className="block text-sm font-medium leading-6 text-gray-900">Resume</label>
-        <input type="file" id="myFile" name="resume"/>
+        <input type="file" id="myFile" onChange={ev => setResume(ev.target.files[0])} name="resume"/>
         </div>
 
 
         <div>
           <label htmlFor="experience" className="block text-sm font-medium leading-6 text-gray-900">Experience</label>
           <div className="mt-2">
-            <input id="experience" name="experience" type="text" autoComplete="experience" required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="experience" name="experience" type="number" autoComplete="experience" required placeholder=" years"  onChange={(ev) =>{
+                setExperience(ev.target.value);
+              }
+            
+            } value={experience} className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
         <div>
