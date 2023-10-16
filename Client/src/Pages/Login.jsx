@@ -10,8 +10,7 @@ import axios from "axios";
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [table, setTable] = useState('');  
-  const [wrongEmail, setWrongEmail] = useState(false); 
-  const [wrongPass, setWrongPass] = useState(false); 
+  const [wrong, setWrong] = useState(false); 
 
 
   function loginUser(ev){
@@ -23,15 +22,15 @@ import axios from "axios";
     }).then((res)=>{
       console.log(res.data.message);
       if(res.data.message === "Wrong Email"){
-        setWrongEmail(true);
+        setWrong(true);
       }else{
-        setWrongEmail(false);
+        setWrong(false);
       }
       if(res.data.message === "Wrong Pass"){
-        setWrongPass(true);
+        setWrong(true);
       }else{
         console.log("user logged in");
-        setWrongPass(false);
+        setWrong(false);
       }
     });
   }
@@ -47,8 +46,7 @@ import axios from "axios";
     </svg>
     </div>
     <h2 className=" text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
-    {wrongEmail && <h4 className='text-center text-red-600'>No existing account with this email! Sign Up.</h4>}
-    {wrongPass && <h4 className='text-center text-red-600'>Wrong Password!</h4>}
+    {wrong && <h4 className='text-center text-red-600'>Wrong Email or Password!</h4>}
   </div>
 
   <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -76,6 +74,7 @@ import axios from "axios";
             <option value="">Select</option>
             <option value="company">Login As Recruiter</option>
             <option value="candidate">Login As Candidate</option>
+            <option value="admin">Login As Admin</option>
           </select>
         </div> 
         </div>

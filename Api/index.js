@@ -54,8 +54,10 @@ app.post('/login-auth',function(req,res){
     var q;
     if(table==='candidate')
         q="select * from candidate where email = ?;";
-    else 
+    else if(table==='company')
         q="select * from company where recruitersemail = ?;"
+    else
+        q="select * from admin where Email_ID = ?"
     con.query(q, [email], function(err, result){
         if(err) throw err;
         if(result.length>0) {
