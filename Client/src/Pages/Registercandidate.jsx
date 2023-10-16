@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import Multiselect from 'multiselect-react-dropdown';
 import axios from "axios";
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"></link>
 
 const Registercandidate = () => {
 
@@ -9,7 +11,6 @@ const Registercandidate = () => {
   const [confirm, setConfirm] = useState(''); 
   const [address, setAddress] = useState(''); 
   const [qualification, setQualification] = useState('');
-  const [skills, setSkills] = useState('');
   const [mobNo, setMobNo] = useState();
   const [dob, setDob] = useState();
   const [resume, setResume] = useState(null); 
@@ -52,7 +53,12 @@ const Registercandidate = () => {
     });
   }
 
+  const [options , setOptions] = useState(['Html', 'Javascript' , 'json' ,'CSS' ,'React', 'MongoDB' , 'NodeJs' ,'ExpressJs']);
+  const [skills , setSkills] = useState([]);
+
+
   return (
+
     
   <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -130,8 +136,22 @@ const Registercandidate = () => {
         <div>
           <label htmlFor="skills" className="block text-sm font-medium leading-6 text-gray-900">Skills</label>
           <div className="mt-2">
-            <input id="skills" name="skills" type="text" autoComplete="skills" onChange={(ev) => setSkills(ev.target.value)} value={skills} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            {/* <input id="skills" name="skills" type="text" autoComplete="skills" onChange={(ev) => setSkills(ev.target.value)} value={skills} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/> */}
+
+
+            <Multiselect name="skills"
+              isObject = {false}
+              options= {options}
+              required className="block w-full rounded-md py-1.5 text-gray-1000  ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
+              onRemove={(event)=>{setSkills(event);
+                                    console.log(skills);}}
+              onSelect={(event)=>{setSkills(event);
+                                    console.log(skills);}}
+
+            />
+            
           </div>
+          
         </div>
 
         <div>
@@ -174,6 +194,12 @@ const Registercandidate = () => {
     
     </div>
   </div>  
+  
   )
+  
 }
+<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js">
+new MultiSelectTag('skill') 
+</script>
+
 export default Registercandidate;
