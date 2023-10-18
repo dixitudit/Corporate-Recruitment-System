@@ -29,8 +29,9 @@ import axios from "axios";
       if(res.data.message === "Wrong Pass"){
         setWrong(true);
       }else{
-        console.log("user logged in");
         setWrong(false);
+        localStorage.setItem('jwtToken', res.data.token);
+        window.location.href = res.data.redirect;
       }
     });
   }

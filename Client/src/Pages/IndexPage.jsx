@@ -1,10 +1,24 @@
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
-
 import Typed from "react-typed";
 import laptop from "../assets/laptop.jpg";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 export default function IndexPage() {
+    const [loggedIn,setLoggedIn] = useState(false);
+    const [str, setStr]=useState('/login');
+    useEffect(()=>{
+      if(localStorage.getItem('jwtToken')!=null){
+        setStr('/jobs');
+        setLoggedIn(true);
+      }
+      else{
+        setStr('/login');
+        setLoggedIn(false);
+      }
+    }, [loggedIn]);
+
+
     return (
   <>
     <NavBar/>
@@ -30,7 +44,7 @@ export default function IndexPage() {
           loop
         />
         </div>
-        <Link to={'/login'} className='whitespace-nowrap bg-[black] px-5 md:w-auto w-auto rounded-md font-medium my-6 mx-auto py-3 text-white'>Are You Ready</Link>
+        <Link to={str} className='whitespace-nowrap bg-[black] px-5 md:w-auto w-auto rounded-md font-medium my-6 mx-auto py-3 text-white'>Are You Ready</Link>
       </div>
 
 

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Multiselect from 'multiselect-react-dropdown';
 import axios from "axios";
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"></link>
 
 const Registercandidate = () => {
 
@@ -17,6 +16,8 @@ const Registercandidate = () => {
   const [experience, setExperience] = useState();
   const [passCheck, setPassCheck] = useState(false);
   const [passBool, setPassBool] = useState(false);
+  const [options , ] = useState(['Html', 'JavaScript' , 'Json' ,'CSS' ,'React', 'MongoDB' ,'MySql', 'NodeJs' ,'ExpressJs', 'Machine Learning', 'Django', 'Python','AI']);
+  const [skills , setSkills] = useState([]);
 
   useEffect(()=>{
     if(passBool){
@@ -53,8 +54,6 @@ const Registercandidate = () => {
     });
   }
 
-  const [options , setOptions] = useState(['Html', 'Javascript' , 'json' ,'CSS' ,'React', 'MongoDB' , 'NodeJs' ,'ExpressJs']);
-  const [skills , setSkills] = useState([]);
 
 
   return (
@@ -136,7 +135,6 @@ const Registercandidate = () => {
         <div>
           <label htmlFor="skills" className="block text-sm font-medium leading-6 text-gray-900">Skills</label>
           <div className="mt-2">
-            {/* <input id="skills" name="skills" type="text" autoComplete="skills" onChange={(ev) => setSkills(ev.target.value)} value={skills} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/> */}
 
 
             <Multiselect name="skills"
@@ -164,7 +162,7 @@ const Registercandidate = () => {
         <div>
           <label htmlFor="dateofbirth" className="block text-sm font-medium leading-6 text-gray-900">Date Of Birth</label>
           <div className="mt-2">
-            <input id="dateofbirth" name="dateofbirth" type="date" placeholder="dd-mm-yyyy" onChange={(ev) => setDob(ev.target.value)} value={dob} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
+            <input id="dateofbirth" name="dateofbirth" type="date" placeholder="dd-mm-yyyy" max="2008-12-31" onChange={(ev) => setDob(ev.target.value)} value={dob} required className="block w-full rounded-md border-0 py-1.5 text-gray-1000 shadow-sm ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"/>
           </div>
         </div>
         
@@ -198,8 +196,5 @@ const Registercandidate = () => {
   )
   
 }
-<script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js">
-new MultiSelectTag('skill') 
-</script>
 
 export default Registercandidate;

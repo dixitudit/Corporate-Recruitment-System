@@ -1,8 +1,10 @@
-import { useState  } from "react";
+import { useState , useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
+import profile from "../assets/young-businessman-icon.png";
 import PopUp from "./PopUp";
-import Login from "../Pages/Login";
+import axios from "axios";
+
 const NavBar = () => {
     const [open, setOpen] = useState(false);
     const [openPopup, setOpenPopup] = useState(false);
@@ -10,6 +12,29 @@ const NavBar = () => {
     const HandleRemovePopUp = () => setOpenPopup(false);
   
     const location  = useLocation();
+
+    const [loggedIn,setLoggedIn] = useState(false);
+    const [name, setName]=useState('');
+
+    useEffect(()=>{
+      if(localStorage.getItem('jwtToken')!=null){
+        //setStr('/jobs');
+        setLoggedIn(true);
+        axios.get('/userName',{
+            headers: {Authorization: `Bearer ${localStorage.getItem('jwtToken')}`},
+          }).then((res)=>{
+            setName(res.data.userName);
+          }).catch((err)=>{
+            console.log(err);
+          });
+        
+      }
+      else{
+        //setStr('/login');
+        setLoggedIn(false);
+      }
+    }, [loggedIn,localStorage.getItem('jwtToken')]);
+
     const changeSVG = () =>{
         setOpen(!open);      
     }
@@ -43,7 +68,7 @@ const NavBar = () => {
             </div>}
         </div>
         <div>
-            <ul className={`md:flex gap-3 font-medium pr-36 max-md:bg-teal-100 z-[1] md:z-auto md:static absolute w-full px-4 md:w-auto md:py-1 md-pl-0 pl-8 md:opacity-100 opacity-0 transition-all ease-in duration-400 ${open?'top-16 opacity-100':'top-[-480px]'}`}>
+            <ul className={`md:flex gap-3 font-medium pr-40 max-md:bg-teal-100 z-[1] md:z-auto md:static absolute w-full px-4 md:w-auto md:py-1 md-pl-0 pl-8 md:opacity-100 opacity-0 transition-all ease-in duration-400 ${open?'top-16 opacity-100':'top-[-480px]'}`}>
                 <li className='mx-2 my-4 '>
                     <Link to={"/"} className={`cursor-pointer ${location.pathname === '/' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Home</Link>
                 </li>
@@ -59,14 +84,32 @@ const NavBar = () => {
                 <li className='mx-2 my-4 '>
                     <ScrollLink to="ContactUs" className={`cursor-pointer ${location.pathname === '/Contactus' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Contact Us</ScrollLink>
                 </li>
-                <li>
+                {loggedIn ?
+                <li className='mx-2 my-4 '>
+                <button onClick={()=>{ 
+                    localStorage.removeItem('jwtToken'); 
+                    window.location.reload(false);}
+                    } 
+                    
+                    className={`cursor-pointer absolute top-4 right-36 z-[1] w-8 flex  ${location.pathname === '/Contactus' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>
+                    
+                    <p>Welcome, {name}</p>
+                    <img className="ml-2 mt-[-5px] mb-[-10px] pt-[-5px]" src={profile}/>
+                    
+                </button> 
+                </li>
+                    
+                    :
+                    
+                    
+                    <li>
                     <Link to={'/login'} className='absolute z-[1] top-1 right-20'>
                         <div className='py-1 rounded-2xl px-4  my-4 bg-[#00D8FF] '>Log in</div>
                     </Link>
                     <button onClick={() => setOpenPopup(true)} className=" absolute top-1 right-0">
                         <div className='py-1 hover:bg-[#77e5f1] rounded-2xl px-5  my-4 bg-sky-100'>Sign Up</div>
                     </button>
-                </li>
+                </li>}
             </ul>
 
         </div> 
