@@ -91,10 +91,10 @@ const NavBar = () => {
                     window.location.reload(false);}
                     } 
                     
-                    className={`cursor-pointer absolute top-4 right-36 z-[1] w-8 flex  ${location.pathname === '/Contactus' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>
+                    className={`cursor-pointer items-center absolute top-5 right-36 z-[1] w-8 flex  ${location.pathname === '#' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>
                     
                     <p>Welcome, {name}</p>
-                    <img className="ml-2 mt-[-5px] mb-[-10px] pt-[-5px]" src={profile}/>
+                    <img className="ml-2 " src={profile}/>
                     
                 </button> 
                 </li>
