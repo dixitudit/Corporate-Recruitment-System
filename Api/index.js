@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express'); 
 
 const app = express();
 
@@ -81,7 +81,7 @@ app.post('/signup-candidate', upload.single('resume'), function(req, res){
     var q = 'insert into candidate values(NULL,?,?,?,?,?,?,?,?,?)';
 
 
-    con.query(q, [req.body.email,hash,req.body.name,req.body.qualification,req.body.address,req.body.dob,imageBuffer,req.body.mobNo,req.body.experiance], function(err,result){
+    con.query(q, [req.body.email,hash,req.body.name,req.body.qualification,req.body.address,req.body.dob,imageBuffer,req.body.mobNo,req.body.experience], function(err,result){
         if(err) throw err;
         con.query("select id from candidate where Email=?;",[req.body.email],function(error,results){
             if(error) throw error;
@@ -118,14 +118,13 @@ app.post('/login-auth',function(req,res){
         if(result.length>0) {
             const isRightPass=bcrypt.compareSync(password,result[0].Password);
             if(isRightPass==true){
-                const user = {};
-                user.id=result[0].id;
-                user.role=table;
-  
+                const user = {
+                    id:result[0].id,
+                    role:table,
+                };
                 //token generation
                 const token = jwt.sign(user, secretKey,{});
                 res.json({token, redirect:'/',});
-                console.log("logged in");
             }
             else
                 res.send({message: "Wrong Pass"});
