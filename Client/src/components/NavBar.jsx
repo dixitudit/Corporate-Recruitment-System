@@ -34,7 +34,7 @@ const NavBar = () => {
         setStr('/login');
         setLoggedIn(false);
       }
-    }, [loggedIn,localStorage.getItem('jwtToken')]);
+    }, []);
 
     const changeSVG = () =>{
         setOpen(!open);      
