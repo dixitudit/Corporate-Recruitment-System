@@ -12,7 +12,6 @@ axios.defaults.baseURL = 'http://localhost:5000';
 
 function App() {
 
-  
   return (
     <Routes>
       <Route index element={<IndexPage/>} />
