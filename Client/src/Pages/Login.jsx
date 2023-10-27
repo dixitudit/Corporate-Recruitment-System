@@ -20,7 +20,6 @@ import axios from "axios";
       password,
       table,
     }).then((res)=>{
-      console.log(res.data.message);
       if(res.data.message === "Wrong Email"){
         setWrong(true);
       }else{

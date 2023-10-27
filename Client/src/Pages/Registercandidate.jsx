@@ -42,7 +42,7 @@ const Registercandidate = () => {
     formData.append('mobNo',mobNo);
     formData.append('dob',dob);
     formData.append('resume',resume);
-    formData.append('experiance',experience);
+    formData.append('experience',experience);
 
 
     axios.post('/signup-candidate', formData , {
@@ -141,10 +141,8 @@ const Registercandidate = () => {
               isObject = {false}
               options= {options}
               required className="block w-full rounded-md py-1.5 text-gray-1000  ring-1 ring-inset ring-sky-400 placeholder:text-sky-400 focus:ring-2 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
-              onRemove={(event)=>{setSkills(event);
-                                    console.log(skills);}}
-              onSelect={(event)=>{setSkills(event);
-                                    console.log(skills);}}
+              onRemove={(event)=>{setSkills(event)}}
+              onSelect={(event)=>{setSkills(event)}}
 
             />
             

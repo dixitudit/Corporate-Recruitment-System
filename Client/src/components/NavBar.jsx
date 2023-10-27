@@ -16,10 +16,11 @@ const NavBar = () => {
     const [loggedIn,setLoggedIn] = useState(false);
     const [name, setName]=useState('');
     const [role, setRole]=useState('');
+    const [str, setStr]=useState('');
 
     useEffect(()=>{
       if(localStorage.getItem('jwtToken')!=null){
-        //setStr('/jobs');
+        setStr('/jobs');
         setLoggedIn(true);
         axios.get('/userName',{
             headers: {Authorization: `Bearer ${localStorage.getItem('jwtToken')}`},
@@ -32,10 +33,10 @@ const NavBar = () => {
         
       }
       else{
-        //setStr('/login');
+        setStr('/login');
         setLoggedIn(false);
       }
-    }, [loggedIn,localStorage.getItem('jwtToken')]);
+    }, []);
 
     const changeSVG = () =>{
         setOpen(!open);      
@@ -77,7 +78,7 @@ const NavBar = () => {
                     <Link to={"/"} className={`cursor-pointer ${location.pathname === '/' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Home</Link>
                 </li>
                 <li className='mx-2 my-4 '>
-                    <Link to={'/Jobs'} className={`cursor-pointer ${location.pathname === '/Jobs' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Jobs</Link>
+                    <Link to={str} className={`cursor-pointer ${location.pathname === '/Jobs' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Jobs</Link>
                 </li>
                 <li className='mx-2 my-4 '>
                     <a href='#' className={`cursor-pointer ${location.pathname === '/Companies' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>Companies</a>
