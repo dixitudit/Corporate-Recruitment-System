@@ -51,7 +51,7 @@ app.get('/userName', (req,res)=>{
             q="select Name from admin where id = ?;"
         con.query(q,[decode.id], function(err,result){
             if(err) throw err;
-            res.json({userName:result[0].Name.split(' ')[0]});
+            res.json({userName:result[0].Name.split(' ')[0], role:decode.role});
         });
     }
     catch (error){
