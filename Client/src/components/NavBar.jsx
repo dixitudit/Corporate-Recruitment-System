@@ -15,6 +15,7 @@ const NavBar = () => {
 
     const [loggedIn,setLoggedIn] = useState(false);
     const [name, setName]=useState('');
+    const [role, setRole]=useState('');
 
     useEffect(()=>{
       if(localStorage.getItem('jwtToken')!=null){
@@ -24,6 +25,7 @@ const NavBar = () => {
             headers: {Authorization: `Bearer ${localStorage.getItem('jwtToken')}`},
           }).then((res)=>{
             setName(res.data.userName);
+            setRole(res.data.role)
           }).catch((err)=>{
             console.log(err);
           });
@@ -38,6 +40,8 @@ const NavBar = () => {
     const changeSVG = () =>{
         setOpen(!open);      
     }
+
+    const Menu = ['Profile', 'jobs', 'logout'];
 
   return (
     <nav className='p-1 whitespace-nowrap md:flex font-serif md:justify-between md:items-center shadow-md  '>

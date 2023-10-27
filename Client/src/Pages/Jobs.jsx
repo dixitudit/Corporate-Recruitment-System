@@ -13,7 +13,6 @@ export default function Jobs(){
        
             <div className='max-w-[1240px] mx-auto grid md:grid-cols-3 gap-8 border '>
 
-
                 <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 border border-[10px]'>
                     {/* <img className='w-20 mx-auto mt-[-3rem] bg-white' src={Single} alt="/" /> */}
                     <h2 className='text-2xl font-bold text-center py-8'>Mastercard</h2>
@@ -26,7 +25,6 @@ export default function Jobs(){
                     </div>
                     <button className='bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3'>Apply</button>
                 </div>
-
 
                 <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 border border-[10px] '>
                     {/* <img className='w-20 mx-auto mt-[-3rem] bg-white' src={Single} alt="/" /> */}
@@ -66,7 +64,6 @@ export default function Jobs(){
                     </div>
                     <button className='bg-[#00df9a] w-[200px] rounded-md font-medium my-6 mx-auto px-6 py-3'>Apply</button>
                 </div>
-
 
                 <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300 border border-[10px]'>
                     {/* <img className='w-20 mx-auto mt-[-3rem] bg-white' src={Single} alt="/" /> */}
