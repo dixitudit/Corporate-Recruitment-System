@@ -1,4 +1,4 @@
-import { useState , useEffect } from "react";
+import { useState , useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import profile from "../assets/young-businessman-icon.png";
@@ -17,6 +17,16 @@ const NavBar = () => {
     const [name, setName]=useState('');
     const [role, setRole]=useState('');
     const [str, setStr]=useState('');
+    const [drop, setDrop] = useState(false);
+    
+
+    // const menuRef = useRef();
+    // const nameRef = useRef();
+
+    // window.addEventListener('click', (e) => {
+    //     if(e.target !== menuRef.current && e.target !== nameRef.current)
+    //     setDrop(false);
+    // })
 
     useEffect(()=>{
       if(localStorage.getItem('jwtToken')!=null){
@@ -42,8 +52,8 @@ const NavBar = () => {
         setOpen(!open);      
     }
 
-    const Menu = ['Profile', 'jobs', 'logout'];
-
+    //use for dropdown items
+    
   return (
     <nav className='p-1 whitespace-nowrap md:flex font-serif md:justify-between md:items-center shadow-md  '>
         <div className='flex justify-between items-center'>
@@ -91,19 +101,63 @@ const NavBar = () => {
                 </li>
                 {loggedIn ?
                 <li className='mx-2 my-4 '>
-                <button onClick={()=>{ 
-                    localStorage.removeItem('jwtToken'); 
-                    window.location.reload(false);}
-                    } 
-                    
+                <button 
+                    onClick={()=>{ setDrop(!drop); } }
                     className={`cursor-pointer items-center absolute top-5 right-36 z-[1] w-8 flex  ${location.pathname === '#' ?'underline underline-offset-4 text-[#00D8FF]':'hover:underline hover:underline-offset-4 hover:text-[#00D8FF]' }`}>
                     
                     <p>Welcome, {name}</p>
+                    
                     <img className="ml-2 " src={profile}/>
                     
                 </button> 
+
+
+               {/*  For candidate user  */}
+               { 
+                drop && role === "candidate" && <div className="absolute">
+                    <ul className="mt-8 bg-white w-40 p-4 shadow-lg ">
+                        
+                        <li className="text-lg cursor-pointer p-2 rounded hover:bg-blue-100" > My Application </li>
+                        {/* <Link to={str}>  <li className="text-lg cursor-pointer p-2 rounded hover:bg-blue-100" >Jobs</li></Link>   */}
+                        <li className="text-lg cursor-pointer p-2 rounded hover:bg-blue-100" onClick={()=>{
+                            localStorage.removeItem('jwtToken'); 
+                            window.location.reload(false);
+                        }}> Logout</li>
+                    </ul>
+                </div>
+                }
+
+                {/*  For company user  */}
+               { 
+                drop && role === "company" && <div className="absolute">
+                <ul className="mt-8 bg-white w-40 p-4 shadow-lg ">
+                        
+                        <li className="text-lg cursor-pointer p-2 rounded hover:bg-blue-100" > Post a Job </li>
+                        <li className="text-lg cursor-pointer p-2 rounded hover:bg-blue-100" > My Jobs </li>
+                        <li className="text-lg cursor-pointer p-2 rounded hover:bg-blue-100" onClick={()=>{
+                            localStorage.removeItem('jwtToken'); 
+                            window.location.reload(false);
+                        }}> Logout</li>
+                    </ul>
+                </div>
+                }
+
+                {/*  For Admin user  */}
+               { 
+                drop && role === "admin" && <div className="absolute">
+                <ul className="mt-8 bg-white w-40 p-4 shadow-lg ">
+                        
+                        <li className="text-lg cursor-pointer p-2 rounded hover:bg-blue-100" > Validate </li>
+                        <li className="text-lg cursor-pointer p-2 rounded hover:bg-blue-100" onClick={()=>{
+                            localStorage.removeItem('jwtToken'); 
+                            window.location.reload(false);
+                        }}> Logout</li>
+                    </ul>
+                </div>
+                }
+
                 </li>
-                    
+                    //else
                     :
                     
                     
@@ -121,6 +175,9 @@ const NavBar = () => {
         
         <PopUp openPopUp={openPopup} closePopUp={HandleRemovePopUp} />
     </nav>
+
+
+
   )
 }
 

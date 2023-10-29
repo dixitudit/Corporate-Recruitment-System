@@ -24,7 +24,7 @@ var con = mysql.createConnection({
     host: "localhost",
     port: "3006",
     user: "root",
-    password: "hellomysql",
+    password: "root",
     database: "crsdb"
 });
 
@@ -110,9 +110,9 @@ app.post('/login-auth',function(req,res){
     if(table==='candidate')
         q="select * from candidate where email = ?;";
     else if(table==='company')
-        q="select * from company where recruitersemail = ?;"
+        q="select * from company where email = ?;"
     else
-        q="select * from admin where Email_ID = ?;"
+        q="select * from admin where email = ?;"
     con.query(q, [email], function(err, result){
         if(err) throw err;
         if(result.length>0) {
